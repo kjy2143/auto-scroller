@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+
+    <script>
+      const app = document.querySelector("#app");
+
+      // 반복적으로 사용할 더미 텍스트
+      const dummyText = "더미 텍스트 ".repeat(20);
+
+      // 박스 HTML을 생성
+      const boxesHtml = Array.from({ length: 100 }, (_, i) => {
+        return `
+          <div class="dummy-box">
+            Box ${i + 1}
+            <div style="font-size: 1rem; font-weight: 400; margin-top: 12px;">
+              ${dummyText}
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      // 최종 HTML 구조
+      const htmlContent = `
+        <div class="horizontal-scroll">
+          ${boxesHtml}
+        </div>
+      `;
+
+      // 렌더링
+      app.innerHTML = htmlContent;
+    </script>
+  </body>
+</html>

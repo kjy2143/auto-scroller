@@ -1,0 +1,97 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.horizontal-scroll {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 0;
+  gap: 24px;
+  width: 100%;
+}
+
+.dummy-box {
+  width: 100%;
+  max-width: 100%;
+  min-height: 180px;
+  background: linear-gradient(135deg, #646cff 40%, #f7df1e 100%);
+  color: #222;
+  font-size: 2rem;
+  font-weight: bold;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  border-radius: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  user-select: none;
+  flex-direction: column;
+  padding: 16px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+/* 스크롤 토글 버튼 애니메이션 및 효과 */
+#scroll-toggle-btn {
+  transition: background 0.3s, transform 0.15s, box-shadow 0.2s;
+}
+#scroll-toggle-btn:hover {
+  background: #444;
+  transform: scale(1.08);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.22);
+}
+#scroll-toggle-btn:active {
+  background: #222;
+  transform: scale(0.96);
+}
+#scroll-toggle-btn.scrolling {
+  background: #f7df1e;
+  color: #222;
+  box-shadow: 0 4px 20px rgba(247,223,30,0.25);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+}
