@@ -85,6 +85,10 @@ html {
   color: #222;
   box-shadow: 0 4px 20px rgba(247,223,30,0.25);
 }
+#scroll-toggle-btn:focus {
+  box-shadow: 0 0 0 3px #4f8cff;
+  outline: none;
+}
 
 @media (prefers-color-scheme: light) {
   :root {
