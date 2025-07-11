@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auto Scroller 북마클릿</title>
+  <meta name="description" content="웹페이지 자동 스크롤 북마클릿 - 설치 및 데모" />
+  <meta property="og:title" content="Auto Scroller 북마클릿" />
+  <meta property="og:description" content="웹페이지 자동 스크롤 북마클릿 - 설치 및 데모" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://[username].github.io/auto-scroller/" />
+  <meta property="og:image" content="vite.svg" />
+  <link rel="icon" type="image/svg+xml" href="vite.svg" />
+  <link rel="stylesheet" href="../src/style.css" />
+  <style>
+    body { font-family: 'Pretendard', sans-serif; margin: 0; background: #f9f9f9; color: #222; }
+    .container { max-width: 700px; margin: 0 auto; padding: 2rem 1rem; }
+    h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+    .bookmarklet-area { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px #0001; padding: 1.5rem; margin-bottom: 2rem; }
+    .bookmarklet-btn { display: inline-block; background: #4f8cff; color: #fff; font-weight: bold; padding: 0.7em 1.2em; border-radius: 6px; text-decoration: none; margin-bottom: 1rem; cursor: grab; }
+    .copy-row { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .copy-input { flex: 1; font-size: 1rem; padding: 0.5em; border: 1px solid #ccc; border-radius: 4px; }
+    .copy-btn { background: #eee; border: none; border-radius: 4px; padding: 0.5em 1em; cursor: pointer; }
+    .demo-area { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px #0001; padding: 1.5rem; }
+    .dummy-box { background: #e3eaff; border-radius: 6px; margin-bottom: 1rem; padding: 1rem; }
+    @media (max-width: 600px) { .container { padding: 1rem 0.2rem; } h1 { font-size: 1.4rem; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Auto Scroller 북마클릿</h1>
+    <p>웹페이지를 자동으로 스크롤해주는 북마클릿을 설치해보세요!</p>
+    <div class="bookmarklet-area">
+      <h2>설치 방법</h2>
+      <ol>
+        <li>아래 <b>북마클릿 버튼</b>을 <b>드래그</b>하여 브라우저 즐겨찾기/북마크 바에 놓으세요.</li>
+        <li>또는 <b>복사</b> 후 북마크에 직접 붙여넣기 하세요.</li>
+      </ol>
+      <a id="bookmarklet-btn" class="bookmarklet-btn" href="#">Auto Scroller</a>
+      <div class="copy-row">
+        <input id="bookmarklet-code" class="copy-input" readonly value="" />
+        <button class="copy-btn" onclick="copyBookmarklet()">복사하기</button>
+      </div>
+      <div style="font-size:0.95em; color:#666;">설치 후, 스크롤이 필요한 웹페이지에서 북마클릿을 클릭하세요.</div>
+    </div>
+    <div class="demo-area">
+      <h2>데모</h2>
+      <div id="demo-content"></div>
+    </div>
+  </div>
+  <script>
+    // 북마클릿 코드 불러오기 (bookmarklet.txt에서 읽어옴)
+    fetch('../dist/bookmarklet.txt')
+      .then(res => res.text())
+      .then(bookmarklet => {
+        document.getElementById('bookmarklet-btn').setAttribute('href', bookmarklet);
+        document.getElementById('bookmarklet-code').value = bookmarklet;
+      });
+    function copyBookmarklet() {
+      const input = document.getElementById('bookmarklet-code');
+      input.select();
+      document.execCommand('copy');
+      alert('북마클릿 코드가 복사되었습니다!');
+    }
+    // 데모용 더미 콘텐츠 생성
+    const demo = document.getElementById('demo-content');
+    demo.innerHTML = Array.from({length: 30}, (_,i) => `<div class='dummy-box'>Demo Box ${i+1}</div>`).join('');
+  </script>
+</body>
+</html>
