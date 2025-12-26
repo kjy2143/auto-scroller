@@ -21,7 +21,7 @@
     .copy-input { flex: 1; font-size: 1rem; padding: 0.5em; border: 1px solid #ccc; border-radius: 4px; }
     .copy-btn { background: #eee; border: none; border-radius: 4px; padding: 0.5em 1em; cursor: pointer; }
     .demo-area { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px #0001; padding: 1.5rem; }
-    .dummy-box { background: #e3eaff; border-radius: 6px; margin-bottom: 1rem; padding: 1rem; }
+    .dummy-box { width: 100%; max-width: 100%; min-height: 180px; background: linear-gradient(135deg, #646cff 40%, #f7df1e 100%); color: #222; font-size: 2rem; font-weight: bold; display: flex; align-items: flex-start; justify-content: center; border-radius: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); user-select: none; flex-direction: column; padding: 16px; box-sizing: border-box; text-align: left; margin-bottom: 1rem; }
     @media (max-width: 600px) { .container { padding: 1rem 0.2rem; } h1 { font-size: 1.4rem; } }
   </style>
 </head>
@@ -48,12 +48,15 @@
     </div>
   </div>
   <script>
-    // 북마클릿 코드 불러오기 (bookmarklet.txt에서 읽어옴)
-    fetch('./bookmarklet.txt')
+    // 로컬이면 ../dist/, 배포면 ./
+    const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+    const basePath = isLocal ? '../auto-scroller/dist/' : './';
+
+    fetch(basePath + 'bookmarklet.txt')
       .then(res => res.text())
-      .then(bookmarklet => {
-        document.getElementById('bookmarklet-btn').setAttribute('href', bookmarklet);
-        document.getElementById('bookmarklet-code').value = bookmarklet;
+      .then(text => {
+        document.getElementById('bookmarklet-btn').href = text.trim();
+        document.getElementById('bookmarklet-code').value = text.trim();
       });
     function copyBookmarklet() {
       const input = document.getElementById('bookmarklet-code');
