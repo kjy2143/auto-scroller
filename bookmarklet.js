@@ -1,18 +1,16 @@
-// dist/auto-scroller.min.js를 bookmarklet 코드로 변환
-import fs from 'fs';
-import path from 'path';
+import { readFileSync, writeFileSync, existsSync } from 'fs';
+import { resolve } from 'path';
 
-const distPath = path.resolve('dist', 'auto-scroller.min.js');
-const outputPath = path.resolve('dist', 'bookmarklet.txt');
+const DIST_PATH = resolve('dist', 'auto-scroller.min.js');
+const OUTPUT_PATH = resolve('dist', 'bookmarklet.txt');
 
-if (!fs.existsSync(distPath)) {
-  console.error('빌드 파일이 존재하지 않습니다:', distPath);
+if (!existsSync(DIST_PATH)) {
+  console.error(`빌드 파일 없음: ${DIST_PATH}`);
   process.exit(1);
 }
 
-const code = fs.readFileSync(distPath, 'utf-8').trim();
-// IIFE로 감싸고, javascript:로 시작, URI 인코딩
-const bookmarklet = 'javascript:' + encodeURI(`(function(){${code}})();`);
+const code = readFileSync(DIST_PATH, 'utf-8').trim();
+const bookmarklet = `javascript:${encodeURIComponent(`(function(){${code}})();`)}`;
 
-fs.writeFileSync(outputPath, bookmarklet);
-console.log('Bookmarklet 코드가 dist/bookmarklet.txt에 저장되었습니다.');
+writeFileSync(OUTPUT_PATH, bookmarklet);
+console.log(`Bookmarklet 생성 완료: ${OUTPUT_PATH} (${bookmarklet.length} bytes)`);

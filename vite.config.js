@@ -1,23 +1,31 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: './',
+  base: '/auto-scroller/',
+  server: {
+    host: '0.0.0.0',
+    port: 5173,
+  },
   build: {
-    minify: 'terser', // terser로 압축 및 난독화
+    minify: 'terser',
+    sourcemap: false,
     terserOptions: {
       compress: {
-        drop_console: true, // console.* 제거
-        drop_debugger: true, // debugger 제거
+        drop_console: true,
+        drop_debugger: true,
+        dead_code: true,
+        unused: true,
       },
       format: {
-        comments: false, // 주석 제거
+        comments: false,
       },
+      mangle: true,
     },
     outDir: 'dist',
     assetsDir: '',
     rollupOptions: {
       output: {
-        manualChunks: undefined, // 코드 스플리팅 비활성화(북마클릿 용도)
+        manualChunks: undefined,
         entryFileNames: 'auto-scroller.min.js',
       },
     },

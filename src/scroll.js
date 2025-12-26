@@ -1,12 +1,10 @@
+import { SCROLL_SPEED } from './config.js';
+
 // 자동 스크롤 상태 변수
 let isScrolling = false; // 스크롤 동작 여부
 let scrollAnimationFrame = null; // requestAnimationFrame ID
 let sentinel = null; // 페이지 하단 감지용 sentinel 요소
 let observer = null; // IntersectionObserver 인스턴스
-
-// 스크롤 속도 (px/step)
-const SCROLL_SPEED = 2;
-// SCROLL_INTERVAL 상수 제거 (requestAnimationFrame만 사용)
 
 // sentinel 요소 생성 및 observer 설정
 function setupSentinel() {

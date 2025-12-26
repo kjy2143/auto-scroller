@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
+    <style>
+      #toon_content_imgs {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+      }
+      #toon_content_imgs li {
+        width: 100%;
+        max-width: 690px;
+      }
+      #toon_content_imgs img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+    </style>
   </head>
   <body>
     <div id="app"></div>
@@ -13,26 +33,17 @@
     <script>
       const app = document.querySelector("#app");
 
-      // 반복적으로 사용할 더미 텍스트
-      const dummyText = "더미 텍스트 ".repeat(20);
-
-      // 박스 HTML을 생성
-      const boxesHtml = Array.from({ length: 100 }, (_, i) => {
-        return `
-          <div class="dummy-box">
-            Box ${i + 1}
-            <div style="font-size: 1rem; font-weight: 400; margin-top: 12px;">
-              ${dummyText}
-            </div>
-          </div>
-        `;
+      // 이미지 리스트 HTML 생성 (레이지 로딩 적용)
+      // width/height 명시: 브라우저가 레이아웃을 미리 계산하여 lazy loading 정상 작동
+      const imagesHtml = Array.from({ length: 30 }, (_, i) => {
+        return `<li><img src="https://picsum.photos/690/800?random=${i + 1}" alt="Image ${i + 1}" width="690" height="800" loading="lazy" /></li>`;
       }).join("");
 
       // 최종 HTML 구조
       const htmlContent = `
-        <div class="horizontal-scroll">
-          ${boxesHtml}
-        </div>
+        <ul id="toon_content_imgs">
+          ${imagesHtml}
+        </ul>
       `;
 
       // 렌더링

@@ -35,7 +35,7 @@ html {
 #app {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0;
   text-align: center;
 }
 
@@ -67,27 +67,45 @@ html {
   text-align: left;
 }
 
-/* 스크롤 토글 버튼 애니메이션 및 효과 */
+/* 스크롤 토글 버튼 글래스모피즘 스타일 */
 #scroll-toggle-btn {
-  transition: background 0.3s, transform 0.15s, box-shadow 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 #scroll-toggle-btn:hover {
-  background: #444;
-  transform: scale(1.08);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.22);
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.05);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  border-color: rgba(255, 255, 255, 0.3);
 }
+
 #scroll-toggle-btn:active {
-  background: #222;
-  transform: scale(0.96);
+  transform: scale(0.95);
+  background: rgba(255, 255, 255, 0.1);
 }
+
 #scroll-toggle-btn.scrolling {
-  background: #f7df1e;
-  color: #222;
-  box-shadow: 0 4px 20px rgba(247,223,30,0.25);
+  background: rgba(79, 140, 255, 0.4);
+  border-color: rgba(79, 140, 255, 0.5);
+  box-shadow: 0 8px 32px rgba(79, 140, 255, 0.3), inset 0 0 20px rgba(79, 140, 255, 0.1);
+  color: #fff;
 }
+
+#scroll-toggle-btn.scrolling:hover {
+  background: rgba(79, 140, 255, 0.5);
+  box-shadow: 0 12px 40px rgba(79, 140, 255, 0.4), inset 0 0 20px rgba(79, 140, 255, 0.15);
+}
+
 #scroll-toggle-btn:focus {
-  box-shadow: 0 0 0 3px #4f8cff;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 0 0 3px rgba(79, 140, 255, 0.5);
   outline: none;
+}
+
+/* SVG 아이콘 스타일 */
+#scroll-toggle-btn svg {
+  width: 24px;
+  height: 24px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
 }
 
 @media (prefers-color-scheme: light) {
@@ -97,5 +115,35 @@ html {
   }
   a:hover {
     color: #747bff;
+  }
+
+  /* 라이트 모드 글래스모피즘 버튼 */
+  #scroll-toggle-btn {
+    background: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #333;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  #scroll-toggle-btn:hover {
+    background: rgba(0, 0, 0, 0.12);
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  #scroll-toggle-btn:active {
+    background: rgba(0, 0, 0, 0.15);
+  }
+
+  #scroll-toggle-btn.scrolling {
+    background: rgba(79, 140, 255, 0.25);
+    border-color: rgba(79, 140, 255, 0.4);
+    color: #1a56db;
+    box-shadow: 0 8px 32px rgba(79, 140, 255, 0.2), inset 0 0 20px rgba(79, 140, 255, 0.05);
+  }
+
+  #scroll-toggle-btn.scrolling:hover {
+    background: rgba(79, 140, 255, 0.35);
+    box-shadow: 0 12px 40px rgba(79, 140, 255, 0.3), inset 0 0 20px rgba(79, 140, 255, 0.1);
   }
 }
